@@ -32,7 +32,19 @@ const nowMember = async (body) => {
   return speakers[speakers.length - 1];
 };
 
-module.exports = { 
+const editSpeakerList = async (id, body) => {
+  const speakerList = await getAllSpeakers();
+  const result = speakerList.findIndex((element) => element.id === Number(id));
+  speakerList[result] = {
+    id: Number(id),
+    ...body,
+  };
+  const newJson = JSON.stringify(speakerList, null, 2);
+  await fs.writeFile(join(__dirname, path), newJson);
+  return speakerList[result];
+};
+module.exports = {
   getAllSpeakers,
-  nowMember, 
+  nowMember,
+  editSpeakerList,
 };
