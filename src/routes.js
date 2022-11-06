@@ -1,21 +1,24 @@
 const express = require('express');
 const addLogin = require('./CRUD/addLoginPost');
-const validateEmail = require('./middlewares/middlewaresloginValidation/validationEmail');
-const validatePassword = require('./middlewares/middlewaresloginValidation/validationPassword');
-const SearchAll = require('./CRUD/SearchAllGet');
+const SearchAll = require('./CRUD/searchAllGet');
 const searchById = require('./CRUD/searchByIdGet');
 const newSpeaker = require('./CRUD/newSpeakerPost');
+const editSpeaker = require('./CRUD/editSpeakerPut');
+const deleteSpeakerById = require('./CRUD/deleteSpeakerById');
+const searchByIncludes = require('./CRUD/searchByIncludesGet');
+const validateEmail = require('./middlewares/middlewaresloginValidation/validationEmail');
+const validatePassword = require('./middlewares/middlewaresloginValidation/validationPassword');
 const tokenValidation = require('./middlewares/middlewaresNewSpeaker/tokenValidation');
 const nameValidation = require('./middlewares/middlewaresNewSpeaker/nameValidation');
 const ageValidation = require('./middlewares/middlewaresNewSpeaker/ageValidation');
 const talkValidation = require('./middlewares/middlewaresNewSpeaker/talkValidation');
 const rateValidaton = require('./middlewares/middlewaresNewSpeaker/rateValidaton');
-const editSpeaker = require('./CRUD/editSpeakerPut');
-const deleteSpeakerById = require('./CRUD/deleteSpeakerById');
 
 const route = express.Router();
 
 route.get('/talker', SearchAll);
+
+route.get('/talker/search', /* tokenValidation, */ searchByIncludes);
 
 route.get('/talker/:id', searchById);
 
