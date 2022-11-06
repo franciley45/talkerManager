@@ -18,7 +18,7 @@ const route = express.Router();
 
 route.get('/talker', SearchAll);
 
-route.get('/talker/search', /* tokenValidation, */ searchByIncludes);
+route.get('/talker/search', tokenValidation, searchByIncludes);
 
 route.get('/talker/:id', searchById);
 
