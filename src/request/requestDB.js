@@ -34,17 +34,24 @@ const nowMember = async (body) => {
 
 const editSpeakerList = async (id, body) => {
   const speakerList = await getAllSpeakers();
-  const result = speakerList.findIndex((element) => element.id === Number(id));
-  speakerList[result] = {
-    id: Number(id),
-    ...body,
-  };
-  const newJson = JSON.stringify(speakerList, null, 2);
+  const result = speakerList.filter((element) => element.id !== Number(id));
+  const concatenar = [...result, { id: Number(id), ...body }];
+  const newJson = JSON.stringify(concatenar, null, 2);
   await fs.writeFile(join(__dirname, path), newJson);
-  return speakerList[result];
+  const filter = concatenar.filter((e) => e.id === Number(id));
+  return filter[0];
 };
+
+const deleteSpeaker = async (id) => {
+  const speakerList = await getAllSpeakers();
+  const result = speakerList.filter((element) => element.id !== Number(id));
+  const newJson = JSON.stringify(result, null, 2);
+  await fs.writeFile(join(__dirname, path), newJson);
+};
+
 module.exports = {
   getAllSpeakers,
   nowMember,
   editSpeakerList,
+  deleteSpeaker,
 };

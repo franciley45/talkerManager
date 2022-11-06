@@ -11,6 +11,7 @@ const ageValidation = require('./middlewares/middlewaresNewSpeaker/ageValidation
 const talkValidation = require('./middlewares/middlewaresNewSpeaker/talkValidation');
 const rateValidaton = require('./middlewares/middlewaresNewSpeaker/rateValidaton');
 const editSpeaker = require('./CRUD/editSpeakerPut');
+const deleteSpeakerById = require('./CRUD/deleteSpeakerById');
 
 const route = express.Router();
 
@@ -19,6 +20,8 @@ route.get('/talker', SearchAll);
 route.get('/talker/:id', searchById);
 
 route.post('/login', validateEmail, validatePassword, addLogin);
+
+route.delete('/talker/:id', tokenValidation, deleteSpeakerById);
 
 route.put('/talker/:id',
 tokenValidation, 

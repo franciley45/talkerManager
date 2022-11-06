@@ -1,4 +1,4 @@
-const { nowMember } = require('../request/requestAPI');
+const { nowMember } = require('../request/requestDB');
 
 const newSpeaker = async (req, res) => {
     const activity = req.body;

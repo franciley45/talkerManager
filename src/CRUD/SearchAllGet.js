@@ -1,4 +1,4 @@
-const { getAllSpeakers } = require('../request/requestAPI');
+const { getAllSpeakers } = require('../request/requestDB');
 
 const SearchAll = async (_req, res) => {
     const result = await getAllSpeakers();

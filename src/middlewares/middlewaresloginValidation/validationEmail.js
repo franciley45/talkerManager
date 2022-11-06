@@ -1,6 +1,6 @@
 const functionValidatesEmail = require('./functionValidatesEmail');
 
-const validateEmail = (req, res, next) => {
+const validateEmail = (req, _res, next) => {
     const activity = req.body;
     const validate = functionValidatesEmail(activity.email);
 
